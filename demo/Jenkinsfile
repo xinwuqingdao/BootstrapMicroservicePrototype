@@ -7,8 +7,11 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                git 'https://github.com/xinwuqingdao/BootstrapMicroservicePrototype.git'
+             steps {
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/xinwuqingdao/BootstrapMicroservicePrototype.git']]
+                ])
             }
         }
 
@@ -33,7 +36,7 @@ pipeline {
         stage('K8s Deploy') {
             steps {
 				dir('demo'){
-					echo 'Deploy ontainer image to kubernetes...'
+					echo 'Deploy container image to kubernetes...'
                 	sh 'kubectl apply -f k8s/deployment.yaml'
                 }
             }
