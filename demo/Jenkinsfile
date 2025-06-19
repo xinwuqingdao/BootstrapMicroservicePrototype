@@ -14,19 +14,28 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh './mvnw clean package'
+				 dir('demo') {
+                    echo 'Building the project...'
+                    sh './mvnw clean package'
+                }
             }
         }
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+				dir('demo'){
+					echo 'Building Docker image...'
+                	sh 'docker build -t $IMAGE_NAME .'
+                }
             }
         }
 
         stage('K8s Deploy') {
             steps {
-                sh 'kubectl apply -f k8s/deployment.yaml'
+				dir('demo'){
+					echo 'Deploy ontainer image to kubernetes...'
+                	sh 'kubectl apply -f k8s/deployment.yaml'
+                }
             }
         }
     }
