@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "hello-springboot"
+        DOCKER_HOST = "unix:///Users/xinwu/.rd/docker.sock"
     }
 
     stages {
