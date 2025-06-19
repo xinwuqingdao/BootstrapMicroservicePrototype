@@ -1,11 +1,27 @@
 
-🚀 Microservices Prototype Tutorial: Spring Boot + Docker + Jenkins + Kubernetes (macOS)
+# 🛠️ Microservices Prototype Setup Guide
+
+A complete guide to build and deploy a Spring Boot microservice with Docker, Jenkins, and Kubernetes (Rancher Desktop) on macOS 12.7.6.
+
+---
+
+## 📋 Table of Contents
+
+1. [Install Rancher Desktop](#install-rancher-desktop)
+2. [Install Docker Desktop](#install-docker-desktop)
+3. [Install Java 17](#install-java-17)
+4. [Create Spring Boot App](#create-spring-boot-app)
+5. [Build Docker Image](#build-docker-image)
+6. [Install Jenkins](#install-jenkins)
+7. [Write Jenkinsfile](#write-jenkinsfile)
+8. [Create Kubernetes Deployment](#create-kubernetes-deployment)
+9. [Run the Pipeline](#run-the-pipeline)
 
 Environments:
 1. macOS 12.7.6
 2. Git installed
 
-🧩 Step 0: Install Rancher Desktop with Kubernetes
+##🧩 Step 0: Install Rancher Desktop with Kubernetes
 Rancher Desktop lets you run a local Kubernetes cluster with Docker container runtime.
 
 📥 1. Download Rancher Desktop
