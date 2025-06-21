@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "hello-frontend"
+        K8S_YAML = "k8s/deployment.yaml"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/xinwuqingdao/BootstrapMicroservicePrototype.git']]
+                ])
+            }
+        }
+
+        stage('Install & Build Angular') {
+            steps {
+                dir('hello-frontend'){
+                    sh 'npm install'
+                    sh 'npm run build -- --configuration production'
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('hello-frontend'){
+                
+                    sh 'docker build -t $IMAGE_NAME .'
+                    
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                dir('hello-frontend'){
+                    sh 'kubectl apply -f $K8S_YAML'
+                }
+            }
+        }
+    }
+}

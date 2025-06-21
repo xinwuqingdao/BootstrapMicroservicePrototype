@@ -1,0 +1,24 @@
+# Don't include node modules or Angular build output
+node_modules
+dist
+.tmp
+
+# Ignore IDE/editor files
+.vscode
+.idea
+.angular
+
+# Ignore OS and system files
+.DS_Store
+Thumbs.db
+
+# Ignore Git-related files
+.git
+.gitignore
+
+# Ignore logs and temp files
+*.log
+
+# Optional: exclude test coverage and environment files
+coverage
+.env
